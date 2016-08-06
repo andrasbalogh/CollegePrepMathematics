@@ -1,0 +1,107 @@
+## DESCRIPTION
+## Polynomial and Rational Functions
+
+
+## DBsubject(Algebra)
+## DBchapter(Properties of exponents, rational exponents and radicals)
+## DBsection(Properties of rational exponents and radicals)
+## Date(01/01/10)
+## Institution(Fort Lewis College)
+## Author(Paul Pearson)
+## Level(2)
+## MO(1)
+## TitleText1('Functions Modeling Change')
+## TitleText2('Functions Modeling Change')
+## TitleText3('Functions Modeling Change')
+## AuthorText1('Connally')
+## AuthorText2('Connally')
+## AuthorText3('Connally')
+## EditionText1('3')
+## EditionText2('4')
+## EditionText3('5')
+## Section1(9.Tools)
+## Section2(11.Skills)
+## Section3('11.Skills')
+## Problem1(28)
+## Problem2(23)
+## Problem3('23')
+## KEYWORDS('polynomial functions','rational functions')
+
+
+####################################
+#  Initialization
+
+DOCUMENT();
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGunion.pl",
+"parserMultiAnswer.pl",
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+
+####################################
+#  Setup
+
+Context("Numeric");
+Context()->variables->set(x=>{limits=>[1,2]});
+Context()->{error}{msg}{"Operands of '*' can't be words"} = " ";
+
+$a = random(3,9,1);
+$b = random(3,9,1);
+$n = random(1,4,1);
+
+$n2p1 = 2*$n+1;
+
+$fraction = "\frac{$a}{\sqrt{x}} - \frac{$b}{(\sqrt{x})^{$n2p1}} ";
+
+$num = Compute("($a x^$n - $b)");
+$den = Compute("(x^($n) * sqrt(x))");
+
+
+#
+#  Display the fraction and answer blanks nicely
+#
+Context()->texStrings;
+if ($displayMode eq 'TeX') {
+  $showfraction =
+  "\[ $fraction = ".ans_rule(10)."/( \sqrt{x} )^$n2p1  \]";
+} else {
+  $showfraction =
+  ColumnTable(
+  "\( \displaystyle $fraction = \)",
+  ans_rule(10).$BR.$HR."\( \left( \sqrt{x} \right)^$n2p1 \)",
+  indent => 0, separation => 10, valign => "MIDDLE"
+ );
+}
+Context()->normalStrings;
+
+
+####################################
+#  Main text
+
+Context()->texStrings;
+BEGIN_TEXT
+Determine the numerator that is found by combining the two fractions as indicated.
+Express your answer in reduced form.
+$PAR
+$BCENTER
+$showfraction
+$ECENTER
+END_TEXT
+Context()->normalStrings;
+
+
+####################################
+#  Answer evaluation
+
+$showPartialCorrectAnswers = 1;
+
+ANS($num->cmp() );
+
+
+ENDDOCUMENT();
+

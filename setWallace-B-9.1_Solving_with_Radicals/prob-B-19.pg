@@ -1,0 +1,53 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"PGgraphmacros.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;  
+
+$length = Real(random(6,12,1));
+$height = $length - 3;
+$base2 = $length**2 - $height**2 ;
+$base = sqrt($base2);
+
+$gr = init_graph(-0.5, -0.5, $height+2, $height+2, size=>[400,400]);
+
+$gr->moveTo(0,0);
+$gr->lineTo($base, 0, 'blue', 2);
+$gr->lineTo($base, $height, 'blue', 2);
+$gr->lineTo(0, 0, 'blue',2);
+
+$gr->lb( new Label($base/2-0.5, $height/2, 'x', 'black', 'center', 'middle') );
+$gr->lb( new Label($base+0.25, $height/2, 'x-3', 'black', 'left', 'middle') );
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A ladder is leaning against a building so that the distance from the ground to the top of the ladder is 3 feet less than the length of the ladder.  Find the length of the ladder if the distance from the bottom of the ladder to the building is \( \sqrt{$base2} \) feet.
+$BR $BR
+\{ image( insertGraph($gr), width => 400, height=>400, tex_size=>600 ) \}
+$BR $BR
+The length of the ladder is \{ ans_rule(10) \} feet.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($length->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

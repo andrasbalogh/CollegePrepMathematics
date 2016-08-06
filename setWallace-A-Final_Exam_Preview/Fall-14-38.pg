@@ -1,0 +1,56 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"PGgraphmacros.pl",
+"contextFraction.pl",
+"AnswerFormatHelp.pl",
+);
+
+TEXT(beginproblem());
+$refreshCachedImages = 1;
+Context("Fraction");
+Context()->strings->add(undefined=>{});
+
+$a = -random(2, 5,1);
+$b = random(1,4,1);
+
+$c = random(2,5,1);
+$d = -random(1,4,1);
+
+$slope = Compute( "($d - $b)/($c-$a)");
+
+$f = "$slope(x-$a)+$b for x in <-6, 6> using color:blue and weight:2";
+
+$gr = init_graph(-6,-6,6,6, axes=>[0,0], grid=>[12,12],size=>[600,600]);
+plot_functions( $gr, $f);
+$gr -> stamps( closed_circle($a, $b, 'blue') );
+$gr -> stamps( closed_circle($c, $d, 'blue') );
+$fig = image( insertGraph($gr), width=>500, height=>500, tex_size=>900);
+
+
+BEGIN_TEXT
+$BR
+Use the points shown on the graph to find the slope of the line. $BR $BR
+$BCENTER
+\{ $fig \}
+$ECENTER
+$BR $BR
+The slope is \{ ans_rule(20) \} (use "undefined" if the slope is undefined).
+$BR
+END_TEXT
+
+
+ANS($slope->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

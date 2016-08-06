@@ -1,0 +1,67 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(Univeristy of Utah)
+## Author(Utah ww group)
+## Level(2)
+## TitleText1('Mathematical Applications')
+## AuthorText1('Ronald J. Harshbarger and James J. Reynolds')
+## EditionText1('8')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+$a = random(40,50,1);
+
+$b = random(40,50,2);
+
+$c = random(20,25,1);
+
+
+TEXT(EV2(<<EOT));
+
+$BR
+
+The largest single rough diamond ever found, the Cullinan diamond, weighed 3106 carats; how much does the diamond weigh in miligrams? in pounds?
+
+
+(1 carat - 0.2 grams)
+
+$BR 
+
+The diamond weighs  \{ ans_rule(20) \} mg.
+
+$BR
+
+The diamond weighs \{ ans_rule(20) \} lbs.
+
+
+$BR
+
+
+(Enter you answer as a decimal number. Round to two decimal places.)
+
+EOT
+
+$answer1 = 3106*.2*1000;
+
+$answer2 = 621200*(2.205*10**(-6));
+
+ANS(num_cmp($answer1, mode=>"strict"));
+
+ANS(num_cmp($answer2, mode=>"strict"));
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,68 @@
+## DBsubject(Algebra)
+## DBchapter(Polynomial equations and functions)
+## DBsection(Polynomial equations)
+## Institution(UTRGV)
+## Author(UTRGV Mathematics Department)
+## Level(2)
+## TitleText1('Intermediate Algebra')
+## AuthorText1('Manuel A. Villarreal Jr')
+## EditionText1('4')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('Quadratic in Form')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+TEXT(EV2(<<EOT));
+The equation
+\[x^4-50x^2+49 = 0\]
+has four solutions.  Enter them in increasing order:
+$BR\(x_1=\)\{ ans_rule(10) \}
+EOT
+ANS(num_cmp(-7));
+
+TEXT(EV2(<<EOT));
+$BR\(x_2=\)\{ ans_rule(10) \}
+EOT
+ANS(num_cmp(-1));
+
+TEXT(EV2(<<EOT));
+$BR\(x_3=\)\{ ans_rule(10) \}
+EOT
+ANS(num_cmp(1));
+
+TEXT(EV2(<<EOT));
+$BR\(x_4=\)\{ ans_rule(10) \}
+EOT
+ANS(num_cmp(7));
+
+TEXT(EV3(<<'EOT'));
+$BR Hint: Begin by thinking of \(x^2\) as the unknown.
+EOT
+
+SOLUTION(EV3(<<'EOT'));
+$BR $BBOLD Solution:$EBOLD
+Let's think of \(x^2\) as the variable and call it \(z\).  Then our
+equation turns into  
+\[z^2-50z+49 =0.\]
+This a quadratic equation whose solutions are \(z=1\) and \(z=49\).
+Since \[z=x^2\]
+we have that \(x=\pm 1 \) and \(x=\pm 7\).   We need to enter these 
+solutions in the proper order:
+\[-7, \quad -1, \quad 1, \quad 7.\]
+
+EOT
+
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,44 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->strings->add("no solution");
+Context()->strings->add("all real numbers");
+Parser::Number::NoDecimals;  
+
+$ans = Real( random(1, 5, 1) );
+$a = random(2, 5, 1);
+
+$a1 = 4;
+$a2 = $a1 - $a;
+$b1 = 5;
+$b2 = -5;
+$b3 = -($ans*$a - $b1 + $b2);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the equation $BR $BR
+\( $a1 x + $b1 = $b2 + $a2 x + $b3 \) $BR $BR
+\( x = \) \{ ans_rule(40) \} $BR $BR
+( $BITALIC Enter "no solution" if there is no solution, and "all real numbers" if the solution set is all real numbers. $EITALIC )
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($ans->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

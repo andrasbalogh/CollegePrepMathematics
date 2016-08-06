@@ -1,0 +1,36 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl",
+);
+
+TEXT(beginproblem());
+
+$a = random(21,49, 1);
+$b = random(3,9,1);
+$both = $b*$a + $a;
+$bike = $b*$a;
+
+BEGIN_TEXT
+$BR
+Anthony Tedesco sold his used mountain bike and accessories for $\(  $both  \).  If he received \( $b \) times as much money for the bike as he did for the accessories, find how much money he received for the bike.
+$BR $BR
+He received $\{ ans_rule(20) \} for the bike.
+$BR
+END_TEXT
+
+ANS(num_cmp($bike, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

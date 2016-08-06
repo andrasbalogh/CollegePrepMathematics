@@ -1,0 +1,55 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->strings->add("no solution");
+Context() -> variables -> add(a=>Real);
+Parser::Number::NoDecimals;  
+
+$root1 = -3*random(2, 12, 1);
+$root2 = 10;
+$b1 = -($root1 + $root2);
+$c1 = $root1*$root2;
+
+$b2 = -3;
+$c2 = -$c1 / $b2;
+$b3 = $b1 + $c2;
+
+# a^2 + $b1 * a + $c1 == 0
+# a^2 + ($b3 - $c2) * a - $c2*$b2 ==0
+# a( a + $b3) - $c2 *(a + $b2) == 0 
+# a (a + $b3) == $c2 *(a + $b2) 
+
+
+$answer = List($root1, $root2);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the equation. $BR $BR
+\( \frac{a}{a + $b2} = \frac{$c2}{a + $b3} \) $BR $BR
+\( a = \) \{ ans_rule(20) \}
+$BR
+($BITALIC If you find more than one solution, separate the solutions with a comma.  Enter "no solution" if there is no solution. $EITALIC)
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

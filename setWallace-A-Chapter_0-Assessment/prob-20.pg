@@ -1,0 +1,40 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"parserPopUp.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+$a = random(355, 465, 10);
+$b = random(125, 225, 25);
+
+$answer = Compute($a * $b);
+
+$popup = PopUp([ "?", "feet", "square feet", "cubic feet"], "square feet");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A flag measures $a feet by $b feet.  Find its area.  
+$BR $BR
+The area of the flag is \{ ans_rule(20) \} \{ $popup->menu() \}.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+ANS($popup->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

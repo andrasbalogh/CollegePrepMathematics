@@ -1,0 +1,59 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;  
+
+$ground = Real(random(6,9,1));
+$fac = -16;
+$velocity = $fac * (1 - $ground);
+$height = -$ground*$fac;
+
+
+Context()->texStrings;
+BEGIN_TEXT
+
+$BR
+
+An ball is shot upward from the top of a $height-foot building with an initial velocity of $velocity feet per second.  The height \( h \) of the object after \( t \) seconds is given by the quadratic equation:
+
+$BR
+$BR
+ 
+\( h(t) = $fac t^2 + $velocity t + $height \). 
+
+$BR
+$BR
+
+ When will the object hit the ground?
+
+
+$BR 
+
+$BR
+
+The object will hit the ground when the time is \{ ans_rule(10) \} second(s) after it was thrown.
+
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($ground->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

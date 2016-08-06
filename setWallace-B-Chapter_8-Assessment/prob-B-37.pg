@@ -1,0 +1,41 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;  
+
+$a1 = random(2, 3, 1);
+$b1 = -random(2, 9, 1);
+$a2 = random(4, 9, 1);
+$b2 = 1;
+
+$ansr = Compute("$a1*$a2 - $b1*$b2");
+$ansi = Compute("$a1 * $b2 + $a2 * $b1");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Perform the indicated operations $BR $BR
+\( ($a1 + $b1 i) ($a2 + i) = \) \{ ans_rule(5) \} \( + \) \{ ans_rule(5) \} \( i \)
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($ansr->cmp());
+ANS($ansi->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,41 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;  
+
+$a1 = random(5, 9, 1);
+$b1 = -random(4,9,1);
+$x = -random(3,6,1);
+
+$answer = Real( $a1*$x**2 + $b1 );
+
+Context()->operators->undefine( "*", " ", "^", "**");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Given the following function, find \( h($x) \) $BR $BR
+\( h(x) = $a1 x^2 + $b1 \) $BR $BR
+\( h($x) = \) \{ ans_rule(20) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

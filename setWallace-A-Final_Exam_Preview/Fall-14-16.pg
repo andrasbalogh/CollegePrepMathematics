@@ -1,0 +1,40 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Context()->flags->set(
+  tolerance => 0.1,
+  tolType => "absolute",
+);
+
+$a = random(1900, 3100, 100);
+$b = random(99, 399, 100);
+
+$answer = Compute("100*$b / $a");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A family has a net income of $ $a per month and an entertainment budget of $ $b per month.  What percentage of their monthly income is spent on entertainment?
+$BR $BR
+\{ ans_rule(20) \} % of their monthly income is spent on entertainment. (give your answer to the nearest 0.1 %).
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

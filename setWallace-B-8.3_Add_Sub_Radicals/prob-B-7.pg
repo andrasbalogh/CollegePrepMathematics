@@ -1,0 +1,48 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+
+$a = random(2, 4, 1);
+do { $b = random(3, 5, 2); } until ($b != $a);
+
+$r1 = $a**2 * $b;
+$r2 = $b**3;
+
+$answer1 = Compute("$a + $b");
+$answer2 = Compute("sqrt($b)");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Add by first simplifying each radical and then combining any like radical terms.
+ $BR $BR
+\( \sqrt{$r1} + \sqrt{$r2} = \) \{ ans_rule(3) \} \( \cdot \) \{ ans_rule(10) \}
+$BR $BR
+(Type an exact answer; using radicals as sqrt().  Simplify your answer, writing the simplest part first.) 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+install_problem_grader(~~@std_problem_grader);
+$showPartialCorrectAnswers=0;
+
+ANS($answer1->cmp());
+ANS($answer2->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

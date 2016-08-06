@@ -1,0 +1,39 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+
+$a = random(11, 21, 1);
+$b = random(2, 9, 1);
+$per = random(0.91, 0.99, 0.01);
+
+$answer = Compute( (2*$a + 2*$b)*$per );
+
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A rectangular room measures $a feet by $b feet.  Find the cost of installing a strip of wallpaper around the room if the wallpaper costs $ $per foot.
+$BR $BR
+Total Cost = $ \{ ans_rule(20) \}.  
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

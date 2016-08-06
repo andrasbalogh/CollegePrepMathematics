@@ -1,0 +1,41 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextLimitedPolynomial.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPolynomial")->variables->add(a=>'Real');
+
+$a = random(3, 9, 1);
+$b = random(1, 9, 1);
+do {
+$c = random(1, 9, 1);
+$c2 = 2*$b - $c;
+} until ($c2 != 0);
+$answer = Compute("2*$a a - 2*$b");
+
+Context()->flags->set(singlePowers=>1);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR Simplify
+$BR \( ( $a a - $c ) + $a a - $c2  \)  = \{ ans_rule(20) \}.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp);
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

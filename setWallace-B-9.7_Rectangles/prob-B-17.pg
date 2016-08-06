@@ -1,0 +1,42 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+##   Parser::Number::NoDecimals;   ##
+
+
+$a = random(3,11,1);
+$width = Real(random(5, 15, 2));
+$length = Real(3*$width - $a);
+$area = $width*$length;
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+The length of a rectangle is $a centimeters less than three times its width.  Its area is $area square centimeters.  Find the dimensions of the rectangle.
+$BR $BR
+The width is \{ ans_rule(10) \} cm. $BR
+The length is \{ ans_rule(10) \} cm.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($width->cmp());
+ANS($length->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

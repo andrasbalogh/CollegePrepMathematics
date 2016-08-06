@@ -1,0 +1,46 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextFraction.pl",
+"AnswerFormatHelp.pl",
+);
+
+TEXT(beginproblem());
+Context("Fraction-NoDecimals");
+
+$a = random(1,9,1);
+$b = random(3,9,1);
+$d = random(2,9,1);
+# 2 a - b x = a + (d a - b) x
+$a2 = 2*$a;
+$c = $d*$a - $b;
+$answer = Compute("1/$d");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR Solve
+$BR \( $a2 - $b x = $a + $c x \)  
+$BR $BR
+\( x = \) \{ ans_rule(20) \}.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp(
+studentMustReduceFractions=>1,
+reduceFractions=>1,
+allowMixedNumbers=>0,
+));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

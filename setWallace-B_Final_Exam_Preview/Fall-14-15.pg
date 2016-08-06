@@ -1,0 +1,45 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"parserMultiAnswer.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+
+$sol1 = random(2,9,1);
+do { $sol2 =-random(2, 10, 1); } until ($sol2 != $sol1);
+
+$b = -($sol1 + $sol2);
+$c = -$sol1*$sol2;
+
+$answer = List( Real($sol2), Real($sol1) );
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the equation \( z^2 + $b z = $c \)
+$BR $BR
+\( z = \) \{ ans_rule(15) \} 
+$BR
+${BITALIC}(Enter the solutions in a comma-separated list.)$EITALIC
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

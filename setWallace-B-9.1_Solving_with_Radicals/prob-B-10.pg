@@ -1,0 +1,44 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+Context()->strings->add("No Solution");
+
+$a = random(2, 9, 1);
+$b = random(2, 6, 1);
+$bp1 = $b + 1;
+
+$answer = Compute("($b**2 - 1)/$a");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the equation.
+ $BR $BR
+\( \sqrt{$a x + 1} + 1 = $bp1 \)
+$BR $BR
+\( x = \) \{ ans_rule(15) \} 
+$BR $BR
+(Type "No Solution" if there is no solution.) 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

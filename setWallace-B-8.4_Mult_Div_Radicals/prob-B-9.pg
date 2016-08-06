@@ -1,0 +1,42 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+
+$a = random(2, 9, 1);
+do { $b = random(2, 9, 1); } until ($b != $a);
+
+$answer = Compute("$a - $b");
+
+Context()->functions->undefine("sqrt");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Multiply and simplify.
+ $BR $BR
+\( (\sqrt{$a} - \sqrt{$b} ) ( \sqrt{$a} + \sqrt{$b})  = \) \{ ans_rule(5) \} 
+$BR $BR
+(Type an exact answer after simplifying your answer) 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

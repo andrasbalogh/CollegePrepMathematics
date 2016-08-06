@@ -1,0 +1,50 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+##   Parser::Number::NoDecimals;   ##
+
+$a = random(1,4,1);
+do { $b = random(1,6,1); } until ($b != $a);
+
+$answer = List( $a*$b/($a + $b)  );
+
+Context()->texStrings;
+BEGIN_TEXT
+
+$BR
+
+Joshua and Logan are not very handy.
+
+$BR
+$BR
+
+Joshua can replace the brakes of his car in $a hours while it takes Logan $b hours to change his breaks on the same model car.  How long would it take them to change the brakes if they worked together?
+
+$BR $BR
+
+It would take them \{ ans_rule(10) \} hours to change the brakes together.
+
+
+END_TEXT
+
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

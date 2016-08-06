@@ -1,0 +1,36 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+$a = random(1,4,1);
+$b = random(1,4,1);
+$c = random(2,4,1);
+$d = random(1,9,1);
+$answer = $c*($a - $b)**2 + $c**2 - $d;
+
+BEGIN_TEXT
+$BR Simplify
+$BR \(  $c ($a - $b)^2 + (-$c)^2 - $d  \)  = \{ ans_rule(20) \}.
+$BR
+END_TEXT
+
+
+ANS(num_cmp($answer, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

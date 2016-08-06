@@ -1,0 +1,40 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->variables->add(a=>'Real', b=>'Real');
+
+$a1 = random(2, 5, 1);
+$pow1 = random(2, 5, 1);
+$pow2 = - random(2, 5, 1);
+$pow3 = random(2, 5, 1);
+
+$answer = Compute("($a1 * a**$pow1 * b**$pow2 )**$pow3");
+
+Context()->parens->remove("(");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Simplify the expression.  Write the result using positive exponents only.
+\( \left( $a1 a^$pow1 b^{$pow2} \right)^$pow3 = \) \{ ans_rule(20) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

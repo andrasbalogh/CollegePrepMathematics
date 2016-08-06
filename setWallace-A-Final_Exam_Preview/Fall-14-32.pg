@@ -1,0 +1,39 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextLimitedPolynomial.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPolynomial");
+
+$a = random(3, 7, 1);
+$b = random(3, 7, 1);
+$c = random(2, 9, 1);
+
+
+$answer = Compute("$a*x^3 + $a*$b*x^2 - $a*$c*x" );
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Multiply $BR $BR
+\( $a x \left( x^2 + $b x - $c \right) = \) \{ ans_rule(20) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

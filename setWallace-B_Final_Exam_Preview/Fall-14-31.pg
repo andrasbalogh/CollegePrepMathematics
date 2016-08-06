@@ -1,0 +1,90 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"parserMultiAnswer.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->variables->add(y=>Real);
+Parser::Number::NoDecimals;  
+
+$x1 = random(2,9,1);
+$y1 = random(8,14,1);
+
+do { $x2 = random(2, 9, 1); } until ( $x2 != $x1 );
+$y2 = random(2,7,1);
+
+$A = $y1 - $y2;
+$B = -($x1 - $x2);
+$C = $A * $x1 + $B * $y1;
+
+$answer1 = Compute( " $A x + $B y  ");
+$answer2 = Compute( " $C ");
+
+$multians = MultiAnswer($answer1, $answer2)->with(
+  singleResult => 0,
+  allowBlankAnswers => 0,
+
+  checker => sub {
+    my $correct = shift;
+    my $student = shift;
+    my $ansHash = shift;
+    my ($F, $G) = @{$correct};
+    my ($f, $g) = @{$student};
+
+    if (!($f->isFormula))
+    { $ansHash->setMessage(1, "Right hand side should be in the form \( A x + B y \)"); }
+
+    if ($g->isFormula)
+    { $ansHash->setMessage(2, "Left hand side should be a constant \( C \)"); }
+
+#  use an adaptive parameter 'a'
+    my $context = Context()->copy;
+    $context->flags->set(no_parameters=>0);
+    $context->variables->add('a'=>'Parameter');
+    my $a = Formula($context,'a');
+    $f = Formula($context,$f);
+    $g = Formula($context,$g);
+    $F = Formula($context,$F);
+    $G = Formula($context,$G);
+
+ if (($a*$F == $f) && ($a*$G == $g)) 
+    {
+       return [1,1];
+    } elsif ($a*$F == $f) {
+       return [1,0];
+    } elsif ($a*$G == $g) {
+       return [0,1];
+    } else {
+       return [0,0];
+    }
+
+  }
+
+);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Find an equation of the line passing through the pair of points, $BR $BR
+$PAR \( ($x1, $y1) \quad \mbox{and} \quad ($x2, $y2) \) $BR $BR
+Write your answer in the form \( A x + B y = C \)  $BR $BR
+The equation of the line is \{ ans_rule(20) \} \( = \) \{ ans_rule(5) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($multians->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,47 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+
+$a = random(3, 7, 2);
+$b = 2;
+
+$r1 = $b**4 * $a;
+$r2 = $b**2 * $a;
+
+$answer1 = Compute("$a * $b**2 + $b");
+$answer2 = Compute("sqrt($a)");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Combine $BR $BR
+\( $a \sqrt{$r1} + \sqrt{$r2} = \) \{ ans_rule(3) \} \( \cdot \) \{ ans_rule(10) \}
+$BR $BR
+(Type an exact answer; using radicals as sqrt().  Simplify your answer, writing the simplest part first.) 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+install_problem_grader(~~@std_problem_grader);
+$showPartialCorrectAnswers=0;
+
+ANS($answer1->cmp());
+ANS($answer2->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

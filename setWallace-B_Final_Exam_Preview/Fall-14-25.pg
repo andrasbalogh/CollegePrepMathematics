@@ -1,0 +1,50 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Interval");
+Parser::Number::NoDecimals;  
+
+$a = random(2, 9, 1);
+$b = random(2, 5, 1);
+
+$b1 = 6;
+$b2 = -($b - $b1);
+$a2 = 1;
+$a1 = -($b*$a - $a2);
+
+$answer = Compute("($a, inf)");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the inequality $BR $BR
+\( $b2 x + $a2 < $b1 x + $a1\)
+$BR $BR
+The solution set is given by the interval \{ ans_rule(20) \}
+$BR $BR
+
+($BITALIC Write your solution as an interval. For example (19, 21 ].  Use "inf" for infinity if you need it. $EITALIC)
+
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

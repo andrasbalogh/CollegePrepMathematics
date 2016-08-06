@@ -1,0 +1,89 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"parserMultiAnswer.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->variables->add(c=>"Real");
+Parser::Number::NoDecimals;
+Context()->strings->add("is prime");
+
+$root1 = -random(4, 9, 1);
+$root2 = -random(1, 6, 1);
+$fac = random(2,7,1);
+$b = $fac*($root1 + $root2);
+$c = $fac*$root1*$root2;
+
+$answer1 = Compute("$fac*c+$fac*$root1");
+$answer2 = Compute("c+$root2");
+
+$multians = MultiAnswer($answer1, $answer2)->with(
+  singleResult => 0,
+  allowBlankAnswers => 0,
+
+  checker => sub {
+    my $correct = shift; my $student = shift; my $ansHash = shift;
+    my ($F,$G) = @{$correct};
+    my ($f,$g) = @{$student};
+
+    $ansHash->setMessage(1,"Neither factor can be constant") 
+    unless $f->isFormula;
+    $ansHash->setMessage(2,"Neither factor can be constant") 
+    unless $g->isFormula;
+
+    #  use an adaptive parameter 'a'
+    my $context = Context()->copy;
+    $context->flags->set(no_parameters=>0);
+    $context->variables->add('a'=>'Parameter');
+    my $a = Formula($context,'a');
+    $f = Formula($context,$f);
+    $g = Formula($context,$g);
+    $F = Formula($context,$F);
+    $G = Formula($context,$G);
+
+    if ( (($a*$F == $f) && ($F*$G == $f*$g)) ||
+         (($a*$G == $f) && ($F*$G == $f*$g))
+       ) 
+    {
+       return [1,1];
+    } elsif (($a*$F == $f) || ($a*$G == $f)) {
+       return [1,0];
+    } elsif (($a*$F == $g) || ($a*$G == $g)) {
+       return [0,1];
+    } else {
+       return [0,0];
+    }
+
+  }
+
+);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Factor the trinomial $BR $BR
+\( $fac c^2 + $b c + $c = \big( \) \{ $multians->ans_rule(10) \} \( \big) \cdot \big( \) \{ $multians-> ans_rule(10) \} \( \big) \)
+$BR
+(write "is prime" in the first box if the polynomial is prime.)
+END_TEXT
+Context()->normalStrings;
+
+$showPartialCorrectAnswers = 0;
+install_problem_grader(~~&std_problem_grader);
+
+
+ANS($multians->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

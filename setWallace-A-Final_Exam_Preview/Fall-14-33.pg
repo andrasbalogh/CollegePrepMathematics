@@ -1,0 +1,40 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextLimitedPolynomial.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPolynomial");
+
+$a = Compute( random(3, 7, 1) );
+$b = random(2, 9, 1);
+$c = $a*$b;
+
+$answer = Compute("x + $b");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Factor out the greatest common factor from the polynomial, writing the smallest degree factor first.
+$BR $BR
+\( $a x + $c = \) \{ ans_rule(5) \} \( \cdot \) \{ ans_rule(20) \} 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($a -> cmp() );
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

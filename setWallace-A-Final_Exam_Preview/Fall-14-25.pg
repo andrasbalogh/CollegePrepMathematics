@@ -1,0 +1,39 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextFraction.pl",
+);
+
+TEXT(beginproblem());
+Context("Fraction");
+
+$a = random(2,5,1);
+
+$answer = Fraction("1/$a**3");
+
+Context()->operators->undefine("^","**", "*");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Evaluate the expression
+$BR $BR
+  \( \left( \frac{1}{$a} \right)^3 = \) \{ ans_rule(20) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

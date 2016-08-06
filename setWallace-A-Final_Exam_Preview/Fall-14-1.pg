@@ -1,0 +1,39 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill 5)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+$a = random(10,22,1);
+$b = random(1,9,1);
+$c = random(10,22,1);
+$d = random(11,22,1);
+
+
+TEXT(EV2(<<EOT));
+
+$BR
+Add:
+$BR \( -(-$a) + ($b) + $c - ($d) \) = \{ ans_rule(20) \}.
+$BR
+EOT
+
+$answer = $a + $b + $c - $d;
+
+ANS(num_cmp($answer, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

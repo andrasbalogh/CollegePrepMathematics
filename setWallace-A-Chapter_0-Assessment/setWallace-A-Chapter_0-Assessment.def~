@@ -1,0 +1,38 @@
+
+openDate          = 07/29/2015 at 01:22pm CDT
+dueDate           = 08/05/2015 at 01:22pm CDT
+answerDate        = 08/12/2015 at 01:22pm CDT
+
+screenHeaderFile  = 
+assignmentType      = gateway
+attemptsPerVersion  = 0
+timeInterval        = 0
+versionsPerInterval = 0
+versionTimeLimit    = 3000
+problemRandOrder    = 0
+problemsPerPage     = 0
+hideScore           = N
+hideWork            = N
+capTimeLimit        = 0
+ 
+ 
+CollegePrepMath/Course-A-Final-Exam/prob-1.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-4.pg  
+CollegePrepMath/set1.5_Subtraction-of-Real-Numbers/Prob14.pg  
+CollegePrepMath/set1.6_Multiplication-and-Division-of-Real-Numbers/problem_signed_division.pg  
+Library/CollegeOfIdaho/setAlgebra_01_02_OperationsWithRealNumbers/12IntAlg_10_OperationsWithReals.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-13.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-14.pg  
+Library/NewHampshire/NECAP/grade11/gr11-2009/n11-2009-3s.pg  
+CollegePrepMath/set1.7_Exponential-Notation-and-Order-of-Operations/12IntAlg_19_OperationsWithReals.pg  
+CollegePrepMath/set1.7_Exponential-Notation-and-Order-of-Operations/EvaluateExpression.pg  
+CollegePrepMath/set1.7_Exponential-Notation-and-Order-of-Operations/monomialTimesPolynomial_problem1_version1.pg  
+Library/CollegeOfIdaho/setAlgebra_01_05_ProblemSolvingAndFormulas/15IntAlg_19_Operations_Review.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-6.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-8.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-10.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-11.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-20.pg  
+CollegePrepMath/Course-A-Final-Exam/prob-30.pg  
+Library/CollegeOfIdaho/setAlgebra_01_01_AlgebraicExpressions/11IntAlg_13_AlgebraicExpressions.pg  
+

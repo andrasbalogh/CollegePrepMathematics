@@ -1,0 +1,41 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl",
+);
+
+TEXT(beginproblem());
+
+$a = random(21,49, 1);
+$b = random(3,9,1);
+$both = $b*$a + $a;
+$bike = $b*$a;
+
+BEGIN_TEXT
+$BR
+
+The local bike shop sells a bike and accessories package for $\(  $both  \).  If the bike is worth \( $b \) times more than the accessories, how much does the bike cost?
+
+$BR $BR
+
+The price is  $\{ ans_rule(20) \} for the bike.
+
+$BR
+
+END_TEXT
+
+ANS(num_cmp($bike, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

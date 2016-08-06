@@ -1,0 +1,45 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+$miles = Real(random(55, 225, 5));
+$a = random(35, 55, 1);
+$b = random(0.1, 0.5, 0.1);
+
+$c = $a+ $miles*$b*3;
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+
+A cell phone service provider charges Sarah a flat rate of $ $a  per month, plus an additional $ $b per for every additional text sent over 2000.  Suppose that her bill (before taxes) is $ $c.  How many text messages did she go over?
+
+$BR 
+$BR
+
+Sarah exceeded her plan by:  \{ ans_rule(20) \} 
+
+$BR
+
+END_TEXT
+
+Context()->normalStrings;
+
+ANS(($miles*3)->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,42 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextFraction.pl",
+"AnswerFormatHelp.pl",
+);
+
+TEXT(beginproblem());
+Context("Fraction");
+
+$a = random(6, 10, 1);
+do { $b = random(2, 5, 1); } until ($b != $a );
+$c = random(500, 900, 10);
+
+$answer = Compute(" $c * $b*7 /( $a*10) ");
+
+$oz1 = $a*10;
+$oz2 = $b*7;
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A jumbo-size  $oz1-ounce drink at a certain gas station has $c-calories.  How many calories are there in  a $oz2-ounce drink?
+$BR $BR
+The $oz2-ounce drink has \{ ans_rule(20) \} calories.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

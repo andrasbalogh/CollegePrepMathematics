@@ -1,0 +1,64 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"contextLimitedPoint.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPoint")->strings->add("infinitely many solutions");
+Context()->strings->add("no solutions");
+Parser::Number::NoDecimals;  
+
+$xans = -random(2,11,1);
+$yans = -random(2,11,1);
+
+$x1 = random(2, 9, 1);
+$y1 = random(2, 9, 1);
+
+do { $x2 = -random(2, 9, 1); } until ($x2 != $xans);
+
+
+$a1 = $yans - $y1;
+$b1 = -($xans - $x1);
+$c1 = $a1 * $x1 + $b1 * $y1;
+
+$k = random(2,4,1);
+$y2 = $yans - $k * $a1;
+
+$a2 = $y2 - $yans;
+$b2 = -($x2 - $xans);
+$c2 = $a2 * $x2 + $b2 * $y2;
+
+$answer = Point( " ($xans, $yans) ");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the system of equations by the elimination method. $BR $BR
+\( \displaystyle 
+\begin{matrix} 
+$a1 x + $b1 y &= $c1 \\
+$a2 x + $b2 y &= $c2
+\end{matrix} \)
+$BR$BR
+The solution is \( (x, y) = \) \{ ans_rule(40) \}
+$BR$BR
+$BITALIC ( Enter your solution as a point \( (x, y) \).  Enter "infinitely many solutions" or "no solutions" in the answer box if needed.) $EITALIC
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

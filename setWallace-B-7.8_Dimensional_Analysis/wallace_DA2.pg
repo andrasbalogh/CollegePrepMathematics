@@ -1,0 +1,58 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(Univeristy of Utah)
+## Author(Utah ww group)
+## Level(2)
+## TitleText1('Mathematical Applications')
+## AuthorText1('Ronald J. Harshbarger and James J. Reynolds')
+## EditionText1('8')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+$a = random(5,10,1);
+
+$b =random(3,8,1);
+
+
+TEXT(EV2(<<EOT));
+
+$BR
+
+An average human heart beats 60 times per minute. If an average person lives
+to the age of 75, how many times does the average heart beat in a lifetime?
+
+$BR 
+
+
+There should be  \{ ans_rule(20) \} heartbeats per lifetime.
+
+
+
+$BR
+
+
+(Enter you answer as a decimal number. Round to two decimal places.)
+
+EOT
+
+$answer =2365200000;
+
+
+
+ANS(num_cmp($answer, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,38 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+$a = random(300, 700, 100);
+$b = random(150, 250, 100);
+
+$answer = Compute(round( sqrt($a**2 + $b**2) ) );
+
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+An indoor soccer field is a rectangle that is $a feet long by $b feet wide. Coach Garza is having his players run diagonally from one corner of the field to the  opposite corner. What is the distance the players must run?
+$BR $BR
+The length from one corner to the opposite corner is  \{ ans_rule(20) \} feet.  (Round your answer to the nearest foot).
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

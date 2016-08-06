@@ -1,0 +1,49 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->strings->add("no solution");
+Parser::Number::NoDecimals;  
+
+$root1 = Real( random(2, 9, 1));
+$root2 = Real(-1);
+
+$b1 = -($root1 + $root2);
+$c1 = -$root1*$root2;
+
+$b3 = random(3, 5, 1);
+$b2 = ($b3 - $b1);
+
+$answer = List( $root1, $root2 );
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Solve the equation
+\( $b2 + \frac{$c1}{x} = x + $b3 \)
+$BR $BR
+\( x = \) \{ ans_rule(20) \}
+$BR
+($BITALIC If you find more than one solution, separate the solutions with commas.  Enter "no solution" if there is no solution. $EITALIC)
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

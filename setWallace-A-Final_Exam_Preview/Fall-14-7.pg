@@ -1,0 +1,48 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextFraction.pl",
+"AnswerFormatHelp.pl",
+);
+
+TEXT(beginproblem());
+Context("Fraction-NoDecimals");
+
+$a = random(3,6,1);
+$b = random(11,19,1);
+$c = random(7,9,1);
+$d = random(21,29,1);
+# - a y - b = - c y + d
+
+$numerator = $b+$d;
+$denominator = -$a+$c;
+$answer = Compute(" $numerator / $denominator");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR Solve
+$BR \(  -$a b - $b = -$c b + $d  \)  
+$BR $BR
+\( b = \)  \{ ans_rule(20) \}.
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp(
+studentMustReduceFractions=>1,
+reduceFractions=>1,
+allowMixedNumbers=>0,
+));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

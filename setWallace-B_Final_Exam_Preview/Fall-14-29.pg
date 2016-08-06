@@ -1,0 +1,51 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+"contextLimitedPolynomial.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPolynomial")->variables->add(p=>Real);
+## Parser::Number::NoDecimals;  
+
+$a = random(3, 9, 1);
+do { $b = random(3, 9, 1); } until ($a != $b);
+$pow = random(5, 11, 1);
+$pow1 = $pow + 1;
+$powm1 = $pow -1;
+$c = random(2, 5,1);
+$a1 = $c*$a;
+$b1 = $c*$b;
+
+$p1 = Compute(" $a1 p**$pow1 + $b1 p**$pow")->reduce();
+
+$answer = Compute( "$a p**$pow + $b p**$powm1")->reduce();
+
+Context()->flags->set(singlePowers=>1);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Divide
+$BR $BR
+\( \displaystyle \frac{$p1}{$c p} = \) \{ ans_rule(20) \}
+$BR $BR
+(simplify your answer.)
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,53 @@
+##Solve for an equation
+## Algebra equation
+##ENDDESCRIPTION
+
+
+## Tagged by ynw2d
+
+## DBsubject(Algebra)
+## DBchapter(Polynomial equations and functions)
+## DBsection(Polynomial equations)
+## Institution(ASU)
+## Level(3)
+## KEYWORDS('Equations and Inequalities')
+
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl",
+"PGasu.pl",
+"extraAnswerEvaluators.pl"
+);
+
+TEXT(beginproblem());
+$showPartialCorrectAnswers = 0;
+
+
+$b = random(2,5,1);
+$a = $b**3;
+$ans = sqrt($b);
+
+
+BEGIN_TEXT
+Solve the following equation. 
+$BR
+\[ x^6 -  $a = 0 \]
+$BR
+Answer: \{ans_rule(35) \}
+$BR
+$BBOLD Note: $EBOLD
+Use "sqrt" for \( \sqrt{} \) if your answer needs it.  If there is more than one answer, write them separated by commas (e.g., 1, 2). 
+END_TEXT
+
+ANS(number_list_cmp("$ans,-$ans"));
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.;
+
+

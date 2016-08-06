@@ -1,0 +1,51 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+$short = Real(random(2, 8, 1));
+$b = random(2, 5, 1);
+$long = Real(2*$short + $b);
+$a = $short + $long;
+
+Context()->texStrings;
+
+BEGIN_TEXT
+
+$BR
+
+Jeremy and Mike are brothers with a combined age of $a.  However Jeremy is  $b years older than twice Mike's age. How old are the brothers?  
+
+$BR $BR
+
+The younger brother is \{ ans_rule(20) \} years old.
+
+$BR $BR
+
+The older brother is \{ ans_rule(20) \} years old.
+
+$BR
+
+END_TEXT
+
+Context()->normalStrings;
+
+ANS($short->cmp());
+
+ANS($long->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

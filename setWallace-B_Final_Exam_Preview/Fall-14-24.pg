@@ -1,0 +1,46 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric")->strings->add("no solution");
+Parser::Number::NoDecimals;  
+
+$b = random(11, 19, 1);
+do { $a = random(11, 19, 1); } until ($a != $b);
+
+$root1 = $a + sqrt($b);
+$root2 = $a - sqrt($b);
+
+$answer = List($root1, $root2);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Use the square root property to solve the equation. $BR $BR
+\( (x - $a)^2 = $b \) $BR $BR
+\( x  = \) \{ ans_rule(40) \}
+$BR $BR
+Use "sqrt()" for the square root in your answer.  $BR $BR
+($BITALIC If you find more than one solution, separate the solutions with a comma.  Enter "no solution" if there is no solution. $EITALIC)
+$BR
+END_TEXT
+Context()->normalStrings;
+
+
+ANS($answer->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

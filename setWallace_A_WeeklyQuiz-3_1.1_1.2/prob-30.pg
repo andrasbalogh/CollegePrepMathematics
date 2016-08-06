@@ -1,0 +1,46 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+"contextLimitedPolynomial.pl",
+);
+
+TEXT(beginproblem());
+Context("LimitedPolynomial");
+
+$a = random(3, 7, 1);
+$b = random(3, 7, 1);
+$c = random(2, 9, 1);
+$d = random(2, 9, 1);
+
+$answer = Compute(" ($a + $c) *x + ($b + $d)");
+
+#  $answer1 = Compute("$a + $c");
+#  $answer2 = Compute("$b + $d");
+
+Context()->flags->set(singlePowers=>1);
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Add 
+\( \left( $a x + $b \right) + \left( $c x + $d \right) = \) \{ ans_rule(20) \}
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer->cmp());
+
+# ANS($answer1->cmp());
+# ANS($answer2->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

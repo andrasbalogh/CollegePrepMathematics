@@ -1,0 +1,90 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"PGchoicemacros.pl",
+"PGgraphmacros.pl",
+"unionTables.pl",
+"parserPopUp.pl",
+"contextLimitedPoint.pl",
+);
+
+TEXT(beginproblem());
+$refreshCachedImages = 1;
+
+
+$x1 = -random(1, 3, 1);
+$x2 = random(4,9,1);
+
+$b0 = -($x1 + $x2);
+$c0 = $x1*$x2;
+
+$fi[0] = "x^2 + $b0 x + $c0";
+$fi[1] = "-x^2 - $b0 x - $c0";
+$fi[2] = "x^2 - $b0 x + $c0";
+$fi[3] = "x^2 + $b0 x - $c0";
+$fi[4] = "-x^2 + $b0 x - $c0";
+
+$f[0] = "$fi[0] for x in <-20, 20> using color:blue and weight:2";
+$f[1] = "$fi[1] for x in <-20, 20> using color:blue and weight:2";
+$f[2] = "$fi[2] for x in <-20, 20> using color:blue and weight:2";
+$f[3] = "$fi[3] for x in <-20, 20> using color:blue and weight:2";
+$f[4] = "$fi[4] for x in <-20, 20> using color:blue and weight:2";
+
+@gr = ();
+foreach my $i (0..4) {
+  $gr[$i] = init_graph(-20,-20,20,20, axes=>[0,0], grid=>[8,8],size=>[400,400]);
+  plot_functions( $gr[$i], $f[$i]);
+  $fig[$i] = image( insertGraph($gr[$i]), width=>400, height=>400, tex_size=>300);
+}
+
+@perm = shuffle(5);
+@fig = @fig[@perm];
+@inv = invert(@perm);
+
+@letter = ("A", "B", "C", "D", "E");
+
+BEGIN_TEXT
+\{
+ColumnTable(
+"Without a calculator, match each equation with its graph A-E.".
+$BR.$BR.pop_up_list(["?",@letter]).$SPACE."\( \displaystyle $fi[0] \)".
+$BR.$BR.pop_up_list(["?",@letter]).$SPACE."\( \displaystyle $fi[1] \)".
+$BR.$BR.pop_up_list(["?",@letter]).$SPACE."\( \displaystyle $fi[2] \)".
+$BR.$BR.pop_up_list(["?",@letter]).$SPACE."\( \displaystyle $fi[3] \)".
+$BR.$BR.pop_up_list(["?",@letter]).$SPACE."\( \displaystyle $fi[4] \)",# comma!
+$BCENTER.
+BeginTable().
+  AlignedRow([$fig[0],$fig[1]]).
+  TableSpace(5,0).
+  AlignedRow(["A","B"]).
+  TableSpace(25,6).
+  AlignedRow([$fig[2],"$fig[3]"]).
+  TableSpace(5,0).
+  AlignedRow(["C","D",""]).
+  TableSpace(25,6).
+  AlignedRow([$fig[4], " "]).
+  TableSpace(5,0).
+  AlignedRow(["E", ""]).
+EndTable().
+$BR."(Click on a graph to enlarge it)".$ECENTER, # comma!
+indent => 0, separation => 10, valign => "TOP"
+)
+\}
+END_TEXT
+
+install_problem_grader(~~&std_problem_grader);
+$showPartialCorrectAnswers = 0;
+
+foreach $j (0..4) {
+ANS(str_cmp($letter[$inv[$j]]) ); }
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

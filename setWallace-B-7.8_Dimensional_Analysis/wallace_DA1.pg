@@ -1,0 +1,52 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(Univeristy of Utah)
+## Author(Utah ww group)
+## Level(2)
+## TitleText1('Mathematical Applications')
+## AuthorText1('Ronald J. Harshbarger and James J. Reynolds')
+## EditionText1('8')
+## Section1('.')
+## Problem1('')
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PG.pl",
+"PGbasicmacros.pl",
+"PGchoicemacros.pl",
+"PGanswermacros.pl",
+"PGauxiliaryFunctions.pl"
+);
+
+TEXT(beginproblem());
+
+$a = random(2,15,1);
+
+
+TEXT(EV2(<<EOT));
+
+$BR
+
+Convert the following Gigabytes to Megabytes:
+
+$BR 
+
+\( $a \) GB = \{ ans_rule(20) \} MB.
+
+$BR
+
+
+(Enter you answer as a decimal number. Round to two decimal places.)
+
+EOT
+
+$answer = $a*1000;
+
+
+
+ANS(num_cmp($answer, mode=>"strict"));
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

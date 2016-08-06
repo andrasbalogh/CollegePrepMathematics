@@ -1,0 +1,40 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS('algebra')
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl",
+"MathObjects.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+
+$miles = Real(random(55, 225, 5));
+$a = random(19, 29, 1);
+$b = random(0.1, 0.2, 0.1);
+
+$c = $a + $miles*$b;
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+A car rental company charges a daily rate of $ $a plus $ $b per mile for a certain car.  Suppose that you rent that car for a day and your bill (before taxes) is $ $c.  How many miles did you drive?  
+$BR $BR
+Give your answer to the nearest whole mile.
+$BR $BR
+  \{ ans_rule(20) \} miles
+$BR
+END_TEXT
+Context()->normalStrings;
+
+ANS($miles->cmp());
+
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

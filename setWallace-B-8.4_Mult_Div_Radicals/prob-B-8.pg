@@ -1,0 +1,47 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+
+$a = random(2, 3, 1);
+do { $b = random(3, 5, 2); } until ($b != $a);
+
+$r1 = $a*$b;
+
+$answer1 = Compute("$b");
+$answer2 = Compute("$a");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Multiply and simplify.
+ $BR $BR
+\( \sqrt{$r1} ( \sqrt{$a} + \sqrt{$b} ) = \) \{ ans_rule(3) \} \(  \sqrt{$a} \; + \) \{ ans_rule(3) \} \( \sqrt{$b} \)
+$BR $BR
+(Complete the exact answer provided.) 
+$BR
+END_TEXT
+Context()->normalStrings;
+
+install_problem_grader(~~@std_problem_grader);
+$showPartialCorrectAnswers=0;
+
+ANS($answer1->cmp());
+ANS($answer2->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

@@ -1,0 +1,43 @@
+## DBsubject(Algebra)
+## DBchapter(Algebra of real numbers and simplifying expressions)
+## DBsection(Evaluating expressions)
+## Institution(UTPA - House Bill Five)
+## Author(Virgil U Pierce)
+## Level(1)
+## KEYWORDS("algebra")
+
+DOCUMENT();        # This should be the first executable line in the problem.
+
+loadMacros(
+"PGstandard.pl", 
+"MathObjects.pl", 
+"PGcourse.pl",
+);
+
+TEXT(beginproblem());
+Context("Numeric");
+Parser::Number::NoDecimals;
+Context()->strings->add("is prime");
+
+$a = random(2, 4, 1);
+$b = random(5, 7, 1);
+$a2 = $a**2;
+$b2 = $b**2;
+
+$answer1 = Compute("$a x - $b");
+$answer2 = Compute("$a x + $b");
+
+Context()->texStrings;
+BEGIN_TEXT
+$BR
+Factor the following binomial completely. $BR $BR
+\( $a2 x^2 - $b2 = \) \{ ans_rule(10) \} \( \cdot \) \{ ans_rule(10) \}
+$BR
+(Write "is prime" in the first answer box if the original polynomial is prime.)
+END_TEXT
+Context()->normalStrings;
+
+ANS($answer1->cmp());
+ANS($answer2->cmp());
+
+ENDDOCUMENT();        # This should be the last executable line in the problem.

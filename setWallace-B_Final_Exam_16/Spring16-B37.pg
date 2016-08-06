@@ -1,0 +1,71 @@
+##DESCRIPTION
+##  Polynomial Equations
+## 
+##ENDDESCRIPTION
+## DBsubject(Algebra)
+## DBchapter(Polynomial equations and functions)
+## DBsection(Polynomial equations)
+## Institution(The College of Idaho)
+## Author(RA Cruz)
+## MLT(Common_factor_root)
+## Level(3)
+## MO(1)
+## TitleText1('Essentials of Intermediate Algebra')
+## AuthorText1('Blitzer')
+## EditionText1('1')
+## Section1('5.7')
+## Problem1('')
+## KEYWORDS('polynomial equations')
+## Date: 2007/11
+
+DOCUMENT(); # This should be the first executable line in the problem.
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "contextInequalitiesAllowStrings.pl"
+);
+
+TEXT(beginproblem());
+
+######################################
+#  Setup
+#  Form: ax(x-b)(x+b)=0 => ax^4-ab^2x^2=0
+
+Context("Numeric")->strings->add("no solution");
+Context()->strings->add("no real solutions");
+Context() -> variables -> add(k=>Real);
+Parser::Number::NoDecimals;  
+
+$a = random(2,4,1);
+$b = random(2,6,1);
+$abb = -1*$a*$b*$b;
+
+$polynomial = Formula("$a x^4 + $abb x^2")->reduce->TeX;
+
+$ans = List( 0, $b, -$b);
+
+######################################
+#  Main text
+
+Context()->texStrings;
+BEGIN_TEXT
+Use factoring to solve the polynomial equation.  If your answer is more than one solution, enter them separated by commas:
+ \[  $polynomial = 0 \]
+Answer:  \{ ans_rule(30) \} 
+$BR $BR
+END_TEXT
+
+######################################
+#  Answer
+Context()->normalStrings;
+
+ANS($ans->cmp() ); 
+
+$showPartialCorrectAnswers = 1;
+
+######################################
+
+
+;
+ENDDOCUMENT();

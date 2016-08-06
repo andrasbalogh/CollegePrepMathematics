@@ -1,0 +1,35 @@
+
+openDate          = 07/29/2015 at 10:59am CDT
+dueDate           = 08/05/2015 at 10:59am CDT
+answerDate        = 08/12/2015 at 10:59am CDT
+
+screenHeaderFile  = 
+assignmentType      = gateway
+attemptsPerVersion  = 0
+timeInterval        = 0
+versionsPerInterval = 0
+versionTimeLimit    = 3000
+problemRandOrder    = 0
+problemsPerPage     = 0
+hideScore           = N
+hideWork            = N
+capTimeLimit        = 0
+ 
+ 
+Library/ASU-topics/setInequalities/pn4.pg  
+Library/Rochester/setAlgebra13Inequalities/srw1_8_23.pg  
+Library/Rochester/setAlgebra13Inequalities/srw1_8_29-sol.pg  
+Library/Utah/Intermediate_Algebra/set3_Linear_Equations_and_Inequalities/q1.pg  
+Library/CollegeOfIdaho/setAlgebra_04_02_CompoundIneq/42IntAlg_04_CompoundIneq.pg  
+Library/CollegeOfIdaho/setAlgebra_04_02_CompoundIneq/42IntAlg_16_CompoundIneq.pg  
+CollegePrepMath/Library/MC/PreAlgebra/setPreAlgebraC02S10/SolveIneqMultDiv04.pg  
+CollegePrepMath/Library/NWMSU/Algebra/C2S7Translating.pg  
+CollegePrepMath/Library/NWMSU/ElemAlg/C3S1P9.pg  
+CollegePrepMath/set3.1_Solving-Inequalities/graph_inequality_on_numberline.pg  
+Library/ASU-topics/setInequalities/srw1_7_15.pg  
+Library/FortLewis/Algebra/3-2-Solving-inequalities/MCH1-3-2-24-Solving-inequalities.pg  
+Library/MC/PreAlgebra/setPreAlgebraC02S10/SolveIneqMultDiv02.pg  
+Library/Union/setAlgebraInequalities/p13.pg  
+Library/Union/setAlgebraInequalities/srw1_7_13.pg  
+Library/Utah/Business_Algebra/set3_Inequalities_and_Linear_Programming/p01.pg  
+
